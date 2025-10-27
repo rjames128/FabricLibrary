@@ -1,0 +1,13 @@
+root = true
+
+[*.cs]
+charset = utf-8
+indent_style = space
+indent_size = 4
+dotnet_sort_system_directives_first = true
+csharp_style_var_for_built_in_types = true:suggestion
+csharp_style_prefer_inferred_tuple_names = true:suggestion
+csharp_style_prefer_inferred_anonymous_type_member_names = true:suggestion
+
+[*.md]
+trim_trailing_whitespace = false

@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.0" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.0" />
+    <PackageReference Include="Google.Apis.Auth" Version="1.64.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.0" />
+  </ItemGroup>
+  <!-- Reference infrastructure project for shared contracts and interfaces -->
+  <ItemGroup>
+    <ProjectReference Include="src\FabricLibrary.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <!-- Exclude Contracts and Interfaces that have moved to the Infrastructure project to avoid duplicate types -->
+  <ItemGroup>
+    <Compile Remove="src\FabricLibrary.Backend\Contracts\**\*.cs" />
+    <Compile Remove="src\FabricLibrary.Backend\Interfaces\**\*.cs" />
+  </ItemGroup>
+</Project>
