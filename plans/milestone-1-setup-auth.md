@@ -8,7 +8,7 @@ Deliver a working project skeleton and a secure Google sign-in flow so an authen
 ## Deliverables
 - ✅ Repo skeleton with `backend/` and `ui/` folders and README instructions.
 - ✅ .NET Aspire orchestration for dev (Postgres + backend).
-- ⏳ `.env.example` for configuration.
+- ✅ `.env.example` for configuration.
 - ⏳ ASP.NET Core Web API scaffolded in `backend/` with `Users` model and EF Core migrations applied in dev.
 - ⏳ POST /api/auth/google endpoint that verifies Google ID tokens and upserts a `users` record.
 - ⏳ App-level authentication (JWT or secure cookie) enabling a protected test endpoint (GET /api/me) that returns the current user.
@@ -28,7 +28,7 @@ Below is the Milestone 1 task list with checkboxes to track progress. Mark items
 
 - [x] 2) Add dev environment (.NET Aspire orchestration)
    - [x] Add or use the existing .NET Aspire orchestration project under `/orchestration` to bring up Postgres (and optional admin DB UI).
-   - [ ] Provide `.env.example` with `ConnectionStrings__Default` / `DATABASE_URL` or individual DB variables and document how the Aspire orchestration exposes the DB to the backend.
+   - [x] Provide `.env.example` with `ConnectionStrings__Default` / `DATABASE_URL` or individual DB variables and document how the Aspire orchestration exposes the DB to the backend.
 
 - [ ] 3) Data access and migrations
    - [ ] Add EF Core + Npgsql packages and configure DbContext.
@@ -73,13 +73,11 @@ The backend has been scaffolded:
 The .NET Aspire orchestration has been set up:
 - `/orchestration/FabricLibrary.AppHost/` contains the Aspire AppHost project
 - `/orchestration/FabricLibrary.ServiceDefaults/` contains service defaults (health checks, OpenTelemetry, service discovery)
-- AppHost is configured to run the backend API
+- AppHost is configured to run the backend API with PostgreSQL database
+- PostgreSQL database added with pgAdmin for database management
 - Backend project references `FabricLibrary.ServiceDefaults` for integrated monitoring and resilience
-
-**Remaining:**
-- Add Postgres database to the Aspire orchestration
-- Add `.env.example` with clear placeholders for DB connection variables
-- Document how to start and stop the orchestration in `/orchestration/README.md`
+- `.env.example` created at repository root with all required environment variable placeholders
+- `/orchestration/README.md` documents how to start/stop the orchestration and access all services
 
 
 ### 3) EF Core & Users model
