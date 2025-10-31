@@ -1,0 +1,6 @@
+@FabricLibrary.Backend_HostAddress = http://localhost:5008
+
+GET {{FabricLibrary.Backend_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

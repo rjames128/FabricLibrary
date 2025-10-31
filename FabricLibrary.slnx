@@ -1,0 +1,9 @@
+<Solution>
+  <Project Path="backend/FabricLibrary.Backend/FabricLibrary.Backend.csproj" />
+  <Project Path="orchestration/FabricLibrary.AppHost/FabricLibrary.AppHost.csproj" Id="8d6d3d4e-5f0a-41bd-a2a1-11067e2acac7" />
+  <Project Path="orchestration/FabricLibrary.ServiceDefaults/FabricLibrary.ServiceDefaults.csproj" Id="957b1413-45b7-42ba-8514-b71e265bc20d" />
+  <Project Path="ui/fabric-library/fabric-library.esproj">
+    <Build />
+    <Deploy />
+  </Project>
+</Solution>
