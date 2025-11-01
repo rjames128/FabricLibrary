@@ -1,6 +1,11 @@
+using FabricLibrary.Backend.Startup;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();
+
+// Add application services (DbContext, etc.) via extension method
+builder.AddApplicationSetup();
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

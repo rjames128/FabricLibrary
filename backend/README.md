@@ -82,6 +82,49 @@ When running in development mode, Swagger UI is available at:
 
 This provides interactive API documentation and testing capabilities.
 
+## Database Migrations
+
+The project uses Entity Framework Core for database management.
+
+### Creating a New Migration
+
+After making changes to your data models:
+
+```powershell
+cd backend/FabricLibrary.Backend
+dotnet ef migrations add MigrationName
+```
+
+### Applying Migrations
+
+To apply pending migrations to the database:
+
+```powershell
+dotnet ef database update
+```
+
+**Note**: When using the Aspire orchestration, the database connection is automatically configured. Just ensure the AppHost is running or has run at least once to create the database.
+
+### Removing the Last Migration
+
+If you need to remove the last migration (before applying it):
+
+```powershell
+dotnet ef migrations remove
+```
+
+### Viewing Migration SQL
+
+To see the SQL that will be executed:
+
+```powershell
+dotnet ef migrations script
+```
+
+### Database Management Tools
+
+When running with Aspire orchestration, pgAdmin is available through the Aspire Dashboard for visual database management and querying.
+
 ## Configuration
 
 ### Environment Variables

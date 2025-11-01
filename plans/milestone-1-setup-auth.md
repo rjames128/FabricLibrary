@@ -9,7 +9,7 @@ Deliver a working project skeleton and a secure Google sign-in flow so an authen
 - ✅ Repo skeleton with `backend/` and `ui/` folders and README instructions.
 - ✅ .NET Aspire orchestration for dev (Postgres + backend).
 - ✅ `.env.example` for configuration.
-- ⏳ ASP.NET Core Web API scaffolded in `backend/` with `Users` model and EF Core migrations applied in dev.
+- ✅ ASP.NET Core Web API scaffolded in `backend/` with `Users` model and EF Core migrations applied in dev.
 - ⏳ POST /api/auth/google endpoint that verifies Google ID tokens and upserts a `users` record.
 - ⏳ App-level authentication (JWT or secure cookie) enabling a protected test endpoint (GET /api/me) that returns the current user.
 - ⏳ Basic GitHub Actions CI workflow that builds the backend and runs unit tests.
@@ -30,10 +30,10 @@ Below is the Milestone 1 task list with checkboxes to track progress. Mark items
    - [x] Add or use the existing .NET Aspire orchestration project under `/orchestration` to bring up Postgres (and optional admin DB UI).
    - [x] Provide `.env.example` with `ConnectionStrings__Default` / `DATABASE_URL` or individual DB variables and document how the Aspire orchestration exposes the DB to the backend.
 
-- [ ] 3) Data access and migrations
-   - [ ] Add EF Core + Npgsql packages and configure DbContext.
-   - [ ] Implement `User` entity and initial migration.
-   - [ ] Provide commands/scripts for applying migrations in dev (and document them in the README).
+- [x] 3) Data access and migrations
+   - [x] Add EF Core + Npgsql packages and configure DbContext.
+   - [x] Implement `User` entity and initial migration.
+   - [x] Provide commands/scripts for applying migrations in dev (and document them in the README).
 
 - [ ] 4) Implement Google ID token verification endpoint
    - [ ] Add endpoint `POST /api/auth/google` accepting `{ id_token }`.
@@ -80,8 +80,21 @@ The .NET Aspire orchestration has been set up:
 - `/orchestration/README.md` documents how to start/stop the orchestration and access all services
 
 
-### 3) EF Core & Users model
-Add NuGet packages:
+### 3) EF Core & Users model ✅
+**Status: COMPLETE**
+
+Entity Framework Core has been configured with the User model:
+- Added EF Core packages: `Microsoft.EntityFrameworkCore`, `Npgsql.EntityFrameworkCore.PostgreSQL`, `Microsoft.EntityFrameworkCore.Design`
+- Added Aspire integration: `Aspire.Npgsql.EntityFrameworkCore.PostgreSQL` for automatic database connection configuration
+- Created `User` entity in `Models/User.cs` with properties for Google authentication (GoogleSub, Email, DisplayName, CreatedAt, LastSeenAt)
+- Created `AppDbContext` in `Data/AppDbContext.cs` with:
+  - DbSet for Users table
+  - Unique index on GoogleSub
+  - Index on Email for lookups
+  - Proper column constraints and defaults
+- Registered DbContext in `Program.cs` using Aspire's `AddNpgsqlDbContext` method
+- Created initial migration `InitialCreate` for the Users table
+- `backend/README.md` updated with comprehensive database migration documentation
 
 ```powershell
 dotnet add package Microsoft.EntityFrameworkCore
